@@ -41,7 +41,7 @@ function saveKoala( newKoala ){
     name: $('#nameIn').val(),
     age: $('#ageIn').val(),
     gender: $('#genderIn').val(),
-    readyForTransfer: $('#readyForTransferIn').val(),
+    ready_to_transfer: $('#readyForTransferIn').val(),
     notes: $('#notesIn').val()
 }
     console.log(newKoala);
@@ -52,6 +52,13 @@ $.ajax({
     data: newKoala
 }).then( function (response) {
     console.log('response form server', response);
+
+    $('#nameIn').val(''),
+    $('#ageIn').val(''),
+    $('#genderIn').val(''),
+    $('#readyForTransferIn').val(''),
+    $('#notesIn').val('')
+
     getKoalas();
     res.sendStatus(200);
 })
