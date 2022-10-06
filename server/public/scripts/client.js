@@ -6,7 +6,6 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
-
 }); // end doc ready
 
 function setupClickListeners() {
@@ -31,6 +30,7 @@ function setupClickListeners() {
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
+<<<<<<< HEAD
   $.ajax({
     method: 'GET',
     url: '/koalas'
@@ -41,10 +41,64 @@ function getKoalas(){
         
       }
     })
+=======
+  //add in render(response) in get .then()
+>>>>>>> 095eea3080fca88a22d9a2542be0c4e938bc6892
 } // end getKoalas
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
+
+    newKoala = {
+    name: $('#nameIn').val(),
+    age: $('#ageIn').val(),
+    gender: $('#genderIn').val(),
+    ready_to_transfer: $('#readyForTransferIn').val(),
+    notes: $('#notesIn').val()
+}
+    console.log(newKoala);
+
+$.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala
+}).then( function (response) {
+    console.log('response form server', response);
+
+    $('#nameIn').val(''),
+    $('#ageIn').val(''),
+    $('#genderIn').val(''),
+    $('#readyForTransferIn').val(''),
+    $('#notesIn').val('')
+
+    getKoalas();
+    res.sendStatus(200);
+})
+  .catch((err)=>{
+    console.log('failed to POST', err);
+    res.sendStatus(500);
+  })
  
+}
+
+
+function render(array){
+  console.log('in render fn');
+$('#viewKoalas').empty();;
+
+for(let koala of array){
+  $('#viewKoalas').append(`
+    <tr>
+      <td>${koala.name}</td>
+      <td>${koala.age}</td>
+      <td>${koala.gender}</td>
+      <td>${koala.ready_to_transfer}</td>
+      <td>
+        <button id="transferBn" data-id="${koala.id}">Ready to Transfer</button>
+      </td>
+      <td>${koala.notes}</td>
+    </tr>
+  `)
+};
 }
