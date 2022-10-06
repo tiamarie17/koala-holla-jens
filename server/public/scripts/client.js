@@ -5,7 +5,7 @@ $( document ).ready( function(){
   // Establish Click Listeners
   setupClickListeners()
   // load existing koalas on page load
-  
+  getKoalas();
 }); // end doc ready
 
 function setupClickListeners() {
