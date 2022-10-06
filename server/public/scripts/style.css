@@ -1,0 +1,24 @@
+.header {
+    background-color: dodgerblue;
+    /* margin-top: 10%;
+    margin-bottom: 10%; */
+}
+
+#viewKoalas, th, tr, td {
+    border: 1px solid;
+}
+
+.icon{
+    /* float: left; */
+    width: 200px;
+    height: 200px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+h1, h3 {
+    /* text-align: right;
+    margin-right: 64%; */
+    display: inline-flex;
+}
+    
