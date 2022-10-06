@@ -7,7 +7,18 @@ const pool = require('../modules/pool');
 
 
 // GET
-
+koalaRouter.get('/', (req, res) => {
+    pool.query(`
+    SELECT * FROM "koallas" ORDER BY "id";
+`)
+    .then((dbRes) => {
+    res.send(dbRes.rows);
+})
+    .catch((err) => {
+    console.log('GET /koalas failed', err);
+    res.sendStatus(500);
+});
+});
 
 // POST
 
