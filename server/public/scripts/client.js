@@ -36,5 +36,35 @@ function getKoalas(){
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
+
+    newKoala = {
+    name: $('#nameIn').val(),
+    age: $('#ageIn').val(),
+    gender: $('#genderIn').val(),
+    ready_to_transfer: $('#readyForTransferIn').val(),
+    notes: $('#notesIn').val()
+}
+    console.log(newKoala);
+
+$.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala
+}).then( function (response) {
+    console.log('response form server', response);
+
+    $('#nameIn').val(''),
+    $('#ageIn').val(''),
+    $('#genderIn').val(''),
+    $('#readyForTransferIn').val(''),
+    $('#notesIn').val('')
+
+    getKoalas();
+    res.sendStatus(200);
+})
+  .catch((err)=>{
+    console.log('failed to POST', err);
+    res.sendStatus(500);
+  })
  
 }
