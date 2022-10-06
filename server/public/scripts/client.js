@@ -1,11 +1,22 @@
 console.log( 'js' );
 
+// let testKoala=[
+//   { id: 2,
+//     name: 'testName',
+//     age: 'testName',
+//     gender: 'testName',
+//     ready_to_transfer: 'testName',
+//     notes: 'testName',
+//   }
+// ]
+
 $( document ).ready( function(){
   console.log( 'JQ' );
   // Establish Click Listeners
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+  // render(testKoala); //TEST RENDER
 }); // end doc ready
 
 function setupClickListeners() {
@@ -25,7 +36,7 @@ function setupClickListeners() {
     saveKoala( koalaToSend );
     getKoalas();
   }); 
-  //get button added
+
 }
 
 function getKoalas(){
