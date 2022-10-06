@@ -37,7 +37,7 @@ function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
 
-  let newKoala = {
+    newKoala = {
     name: $('#nameIn').val(),
     age: $('#ageIn').val(),
     gender: $('#genderIn').val(),
@@ -53,6 +53,7 @@ $.ajax({
 }).then( function (response) {
     console.log('response form server', response);
     getKoalas();
+    res.sendStatus(200);
 })
   .catch((err)=>{
     console.log('failed to POST', err);
