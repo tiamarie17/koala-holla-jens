@@ -36,9 +36,27 @@ function setupClickListeners() {
     saveKoala( koalaToSend );
     getKoalas();
   }); 
-
+  $('#viewKoalas').on('click', '#transferBn', readyToTransfer);
 }
 
+
+function readyToTransfer(){
+  koalaId= $(this).data('id');
+  console.log('in readyToTransfer fn with id: should say 2', koalaId);
+
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+  })
+    .then((response=>{
+      console.log('The koala was changed to ready');
+      getKoalas();
+    }))
+    .catch(err=>{
+      console.log('in /koalas put error', err);
+    });
+
+}
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
