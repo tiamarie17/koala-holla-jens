@@ -114,17 +114,27 @@ function render(array){
 $('#viewKoalas').empty();;
 
 for(let koala of array){
-  $('#viewKoalas').append(`
-    <tr>
-      <td>${koala.name}</td>
-      <td>${koala.age}</td>
-      <td>${koala.gender}</td>
-      <td>${koala.ready_to_transfer}</td>
-      <td>
-        <button id="transferBn" data-id="${koala.id}">Ready to Transfer</button>
-      </td>
-      <td>${koala.notes}</td>
-    </tr>
-  `)
-};
+  if(koala.ready_to_transfer === 'Y'){
+    $('#viewKoalas').append(`
+      <tr>
+        <td>${koala.name}</td>
+        <td>${koala.age}</td>
+        <td>${koala.gender}</td>
+        <td>${koala.ready_to_transfer}</td>
+        <td>${koala.notes}</td>
+      </tr>
+  `)}
+  else{
+      $('#viewKoalas').append(`
+      <tr>
+        <td>${koala.name}</td>
+        <td>${koala.age}</td>
+        <td>${koala.gender}</td>
+        <td><button id="transferBn" data-id="${koala.id}">Transfer</button></td>
+        <td>${koala.notes}</td>
+      </tr>
+`)
+
+  }
 }
+};
