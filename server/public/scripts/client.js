@@ -56,14 +56,12 @@ $.ajax({
     $('#ageIn').val(''),
     $('#genderIn').val(''),
     $('#readyForTransferIn').val(''),
-    $('#notesIn').val('')
+    $('#notesIn').val('');
 
     getKoalas();
-    res.sendStatus(200);
 })
   .catch((err)=>{
     console.log('failed to POST', err);
-    res.sendStatus(500);
   })
  
 }
