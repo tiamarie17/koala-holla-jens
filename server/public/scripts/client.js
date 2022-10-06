@@ -25,12 +25,22 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
+  //get button added
 }
 
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
-  
+  $.ajax({
+    method: 'GET',
+    url: '/koalas'
+  })
+    .then(function(response){
+      console.log("GET /koalas response", response);
+      for (let i = 0; i < response.length; i++) {
+        
+      }
+    })
 } // end getKoalas
 
 function saveKoala( newKoala ){
