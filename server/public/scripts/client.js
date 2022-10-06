@@ -1,11 +1,22 @@
 console.log( 'js' );
 
+// let testKoala=[
+//   { id: 2,
+//     name: 'testName',
+//     age: 'testName',
+//     gender: 'testName',
+//     ready_to_transfer: 'testName',
+//     notes: 'testName',
+//   }
+// ]
+
 $( document ).ready( function(){
   console.log( 'JQ' );
   // Establish Click Listeners
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+  // render(testKoala); //TEST RENDER
 }); // end doc ready
 
 function setupClickListeners() {
@@ -24,6 +35,25 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
+  $('#viewKoalas').on('click', '#transferBn', readyToTransfer);
+}
+
+function readyToTransfer(){
+  koalaId= $(this).data('id');
+  console.log('in readyToTransfer fn with id: should say 2', koalaId);
+
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+  })
+    .then((response=>{
+      console.log('The koala was changed to ready');
+      getKoalas();
+    }))
+    .catch(err=>{
+      console.log('in /koalas put error', err);
+    });
+
 }
 
 function getKoalas(){
