@@ -63,7 +63,7 @@ koalaRouter.put('/:id', (req, res)=>{
     // data time
     const sqlText=`
     UPDATE "koallas"
-    SET "ready_to_transfer" = 'Y'
+    SET "ready_to_transfer" = NOT "ready_to_transfer"
     WHERE "id" = $1;
     `
     const sqlParams=[koalaId]
