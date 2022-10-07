@@ -20,7 +20,7 @@ $( document ).ready( function(){
 }); // end doc ready
 
 function setupClickListeners() {
-  $( '#addButton' ).on( 'click', function(){
+  $( '#addButton' ).on( 'submit', function(){
   
     console.log( 'in addButton on click' );
     // get user input and put in an object
