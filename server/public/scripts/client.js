@@ -21,6 +21,7 @@ $( document ).ready( function(){
 
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', function(){
+  
     console.log( 'in addButton on click' );
     // get user input and put in an object
     // NOT WORKING YET :(
@@ -36,7 +37,8 @@ function setupClickListeners() {
     saveKoala( koalaToSend );
     getKoalas();
   }); 
-  $('#viewKoalas').on('click', '#transferBn', readyToTransfer);
+  $('#viewKoalas').on('click', '.transferBn', readyToTransfer);
+  $('#viewKoalas').on('click', '.DeleteBn', deleteKoala);
 }
 
 
@@ -108,6 +110,29 @@ $.ajax({
  
 }
 
+function deleteKoala(){
+  console.log('in deleteKoala');
+
+  let koalaId = $(this).data('id');
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${koalaId}`
+  })
+  .then(function(response) {
+    console.log('in .then DELETE', response);
+    // ?
+    getKoalas();
+  })
+  .catch(function(err){
+    console.log('error on DELETE', err);
+    
+  });
+
+  }
+
+
+
 
 function render(array){
   console.log('in render fn');
@@ -122,7 +147,7 @@ for(let koala of array){
         <td>${koala.gender}</td>
         <td>${koala.ready_to_transfer}</td>
         <td>${koala.notes}</td>
-        <td><button id="DeleteBn" data-id="${koala.id}">Delete</button></td>
+        <td><button class="DeleteBn" data-id="${koala.id}">Delete</button></td>
       </tr>
   `)}
   else{
@@ -131,9 +156,9 @@ for(let koala of array){
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
-        <td><button id="transferBn" data-id="${koala.id}">Transfer</button></td>
+        <td><button class="transferBn" data-id="${koala.id}">Transfer</button></td>
         <td>${koala.notes}</td>
-        <td><button id="DeleteBn" data-id="${koala.id}">Delete</button></td>
+        <td><button class="DeleteBn" data-id="${koala.id}">Delete</button></td>
       </tr>
 `)
 
