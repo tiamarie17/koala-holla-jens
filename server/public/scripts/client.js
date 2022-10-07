@@ -122,6 +122,7 @@ for(let koala of array){
         <td>${koala.gender}</td>
         <td>${koala.ready_to_transfer}</td>
         <td>${koala.notes}</td>
+        <td><button id="DeleteBn" data-id="${koala.id}">Delete</button></td>
       </tr>
   `)}
   else{
@@ -132,6 +133,7 @@ for(let koala of array){
         <td>${koala.gender}</td>
         <td><button id="transferBn" data-id="${koala.id}">Transfer</button></td>
         <td>${koala.notes}</td>
+        <td><button id="DeleteBn" data-id="${koala.id}">Delete</button></td>
       </tr>
 `)
 
